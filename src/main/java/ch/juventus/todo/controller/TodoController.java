@@ -17,6 +17,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/todos")
+@CrossOrigin
 @Tag(name = "Todos", description = "CRUD operations for todo items")
 public class TodoController {
 
