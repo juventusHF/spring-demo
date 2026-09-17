@@ -1,35 +1,17 @@
 package ch.juventus.todo.repository;
 
 import ch.juventus.todo.model.Todo;
-import org.springframework.stereotype.Repository;
 
-import java.util.*;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.List;
+import java.util.Optional;
 
-@Repository
-public class TodoRepository {
+public interface TodoRepository {
 
-    private final Map<Long, Todo> store = new LinkedHashMap<>();
-    private final AtomicLong idSequence = new AtomicLong(1);
+    List<Todo> findAll();
 
-    public List<Todo> findAll() {
-        return new ArrayList<>(store.values());
-    }
+    Optional<Todo> findById(Long id);
 
-    public Optional<Todo> findById(Long id) {
-        return Optional.ofNullable(store.get(id));
-    }
+    Todo save(Todo todo);
 
-    public Todo save(Todo todo) {
-        if (todo.getId() == null) {
-            todo.setId(idSequence.getAndIncrement());
-        }
-        store.put(todo.getId(), todo);
-        return todo;
-    }
-
-    public boolean deleteById(Long id) {
-        return store.remove(id) != null;
-    }
+    boolean deleteById(Long id);
 }
-

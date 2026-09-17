@@ -1,6 +1,7 @@
 package ch.juventus.todo.service;
 
 import ch.juventus.todo.model.Todo;
+import ch.juventus.todo.repository.DefaultTodoRepository;
 import ch.juventus.todo.repository.TodoRepository;
 import org.springframework.stereotype.Service;
 
