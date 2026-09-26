@@ -26,15 +26,6 @@ public class Todo {
     public Todo() {
     }
 
-    public Todo(Long id, String owner, String title, String description, boolean completed, Priority priority) {
-        this.id = id;
-        this.owner = owner;
-        this.title = title;
-        this.description = description;
-        this.completed = completed;
-        this.priority = priority;
-    }
-
     public Long getId() {
         return id;
     }

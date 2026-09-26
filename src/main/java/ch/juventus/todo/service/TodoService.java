@@ -65,8 +65,8 @@ public class TodoService {
     }
 
     private boolean isValid(Todo todo) {
-        boolean hasOwner = todo.getOwner() != null || !todo.getOwner().isBlank();
-        boolean hasTitle = todo.getTitle() != null || !todo.getTitle().isBlank();
+        boolean hasOwner = todo.getOwner() != null && !todo.getOwner().isBlank();
+        boolean hasTitle = todo.getTitle() != null && !todo.getTitle().isBlank();
         return hasOwner && hasTitle;
     }
 }
