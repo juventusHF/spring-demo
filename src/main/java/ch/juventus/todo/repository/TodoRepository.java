@@ -1,17 +1,7 @@
 package ch.juventus.todo.repository;
 
 import ch.juventus.todo.model.Todo;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-import java.util.Optional;
-
-public interface TodoRepository {
-
-    List<Todo> findAll();
-
-    Optional<Todo> findById(Long id);
-
-    Todo save(Todo todo);
-
-    boolean deleteById(Long id);
+public interface TodoRepository extends JpaRepository<Todo, Long> {
 }

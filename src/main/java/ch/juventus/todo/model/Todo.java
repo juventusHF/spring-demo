@@ -1,12 +1,21 @@
 package ch.juventus.todo.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 import java.time.LocalDateTime;
 
+@Entity
 @Schema(description = "Represents a todo item")
 public class Todo {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(description = "Unique identifier of the todo", example = "1")
     private Long id;
 
@@ -22,6 +31,7 @@ public class Todo {
     @Schema(description = "Whether the todo has been completed", example = "false")
     private boolean completed;
 
+    @Enumerated(EnumType.STRING)
     @Schema(description = "Priority of the todo", example = "MEDIUM")
     private Priority priority;
 
