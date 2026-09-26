@@ -1,5 +1,6 @@
 package ch.juventus.todo.controller;
 
+import ch.juventus.todo.model.Priority;
 import ch.juventus.todo.model.Todo;
 import ch.juventus.todo.service.TodoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,11 +29,12 @@ public class TodoController {
     }
 
     @GetMapping
-    @Operation(summary = "Get all todos", description = "Returns all todos, optionally filtered by owner")
+    @Operation(summary = "Get all todos", description = "Returns all todos, optionally filtered by owner and/or priority")
     @ApiResponse(responseCode = "200", description = "Successfully retrieved todos")
     public ResponseEntity<List<Todo>> getAllTodos(
-            @Parameter(description = "Filter todos by owner name") @RequestParam Optional<String> owner) {
-        return ResponseEntity.ok(todoService.getAllTodos(owner));
+            @Parameter(description = "Filter todos by owner name") @RequestParam Optional<String> owner,
+            @Parameter(description = "Filter todos by priority") @RequestParam Optional<Priority> priority) {
+        return ResponseEntity.ok(todoService.getAllTodos(owner, priority));
     }
 
     @GetMapping("/{id}")

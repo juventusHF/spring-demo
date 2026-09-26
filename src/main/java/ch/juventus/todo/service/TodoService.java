@@ -18,13 +18,10 @@ public class TodoService {
         this.todoRepository = todoRepository;
     }
 
-    public List<Todo> getAllTodos(Optional<String> owner) {
-        List<Todo> allTodos = todoRepository.findAll();
-        if (owner.isEmpty()) {
-            return allTodos;
-        }
+    public List<Todo> getAllTodos(Optional<String> owner, Optional<Priority> priority) {
         return todoRepository.findAll().stream()
-                .filter(todo -> todo.getOwner().equalsIgnoreCase(owner.get()))
+                .filter(todo -> owner.isEmpty() || todo.getOwner().equalsIgnoreCase(owner.get()))
+                .filter(todo -> priority.isEmpty() || todo.getPriority() == priority.get())
                 .toList();
     }
 
