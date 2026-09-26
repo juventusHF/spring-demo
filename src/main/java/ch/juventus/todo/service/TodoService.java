@@ -1,7 +1,7 @@
 package ch.juventus.todo.service;
 
+import ch.juventus.todo.model.Priority;
 import ch.juventus.todo.model.Todo;
-import ch.juventus.todo.repository.DefaultTodoRepository;
 import ch.juventus.todo.repository.TodoRepository;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +39,9 @@ public class TodoService {
         }
         todo.setId(null); // ensure a new ID is assigned
         todo.setCompleted(false);
+        if (todo.getPriority() == null) {
+            todo.setPriority(Priority.LOW);
+        }
         return todoRepository.save(todo);
     }
 
@@ -51,7 +54,7 @@ public class TodoService {
         existing.setTitle(updated.getTitle());
         existing.setDescription(updated.getDescription());
         existing.setCompleted(updated.isCompleted());
-        existing.setPriority(updated.getPriority());
+        existing.setPriority(updated.getPriority() != null ? updated.getPriority() : Priority.LOW);
         return todoRepository.save(existing);
     }
 
