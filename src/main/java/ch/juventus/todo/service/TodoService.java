@@ -5,6 +5,7 @@ import ch.juventus.todo.model.Todo;
 import ch.juventus.todo.repository.TodoRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -39,6 +40,7 @@ public class TodoService {
         if (todo.getPriority() == null) {
             todo.setPriority(Priority.LOW);
         }
+        todo.setCreatedAt(LocalDateTime.now());
         return todoRepository.save(todo);
     }
 

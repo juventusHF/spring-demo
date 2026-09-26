@@ -2,6 +2,8 @@ package ch.juventus.todo.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.time.LocalDateTime;
+
 @Schema(description = "Represents a todo item")
 public class Todo {
 
@@ -22,6 +24,9 @@ public class Todo {
 
     @Schema(description = "Priority of the todo", example = "MEDIUM")
     private Priority priority;
+
+    @Schema(description = "Timestamp when the todo was created", example = "2026-09-26T14:30:00")
+    private LocalDateTime createdAt;
 
     public Todo() {
     }
@@ -72,6 +77,14 @@ public class Todo {
 
     public void setPriority(Priority priority) {
         this.priority = priority;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
 
