@@ -20,15 +20,19 @@ public class Todo {
     @Schema(description = "Whether the todo has been completed", example = "false")
     private boolean completed;
 
+    @Schema(description = "Priority of the todo", example = "MEDIUM")
+    private Priority priority;
+
     public Todo() {
     }
 
-    public Todo(Long id, String owner, String title, String description, boolean completed) {
+    public Todo(Long id, String owner, String title, String description, boolean completed, Priority priority) {
         this.id = id;
         this.owner = owner;
         this.title = title;
         this.description = description;
         this.completed = completed;
+        this.priority = priority;
     }
 
     public Long getId() {
@@ -69,6 +73,14 @@ public class Todo {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 }
 

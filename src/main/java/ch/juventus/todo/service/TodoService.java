@@ -51,6 +51,7 @@ public class TodoService {
         existing.setTitle(updated.getTitle());
         existing.setDescription(updated.getDescription());
         existing.setCompleted(updated.isCompleted());
+        existing.setPriority(updated.getPriority());
         return todoRepository.save(existing);
     }
 
