@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -29,12 +30,13 @@ public class TodoController {
     }
 
     @GetMapping
-    @Operation(summary = "Get all todos", description = "Returns all todos, optionally filtered by owner and/or priority")
+    @Operation(summary = "Get all todos", description = "Returns all todos, optionally filtered by owner, priority and/or creation date")
     @ApiResponse(responseCode = "200", description = "Successfully retrieved todos")
     public ResponseEntity<List<Todo>> getAllTodos(
             @Parameter(description = "Filter todos by owner name") @RequestParam Optional<String> owner,
-            @Parameter(description = "Filter todos by priority") @RequestParam Optional<Priority> priority) {
-        return ResponseEntity.ok(todoService.getAllTodos(owner, priority));
+            @Parameter(description = "Filter todos by priority") @RequestParam Optional<Priority> priority,
+            @Parameter(description = "Only return todos created since this timestamp (inclusive). Format: yyyy-mm-ddTHH:MM:SS") @RequestParam Optional<LocalDateTime> since) {
+        return ResponseEntity.ok(todoService.getAllTodos(owner, priority, since));
     }
 
     @GetMapping("/{id}")

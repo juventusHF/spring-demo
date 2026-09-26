@@ -19,10 +19,11 @@ public class TodoService {
         this.todoRepository = todoRepository;
     }
 
-    public List<Todo> getAllTodos(Optional<String> owner, Optional<Priority> priority) {
+    public List<Todo> getAllTodos(Optional<String> owner, Optional<Priority> priority, Optional<LocalDateTime> since) {
         return todoRepository.findAll().stream()
                 .filter(todo -> owner.isEmpty() || todo.getOwner().equalsIgnoreCase(owner.get()))
                 .filter(todo -> priority.isEmpty() || todo.getPriority() == priority.get())
+                .filter(todo -> since.isEmpty() || !todo.getCreatedAt().isBefore(since.get()))
                 .toList();
     }
 
